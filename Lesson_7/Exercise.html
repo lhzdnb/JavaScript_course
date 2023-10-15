@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Exercise</title>
+</head>
+<body>
+	<div>
+		Calculator
+		<div>
+			<button onclick="updateCalculation(1)">1</button>
+			
+			<button onclick="updateCalculation(2)">2</button>
+			
+			<button onclick="updateCalculation(3)">3</button>
+		</div>
+		
+		<div>
+			<button onclick="updateCalculation(4)">4</button>
+			
+			<button onclick="updateCalculation(5)">5</button>
+			
+			<button onclick="updateCalculation(6)">6</button>
+		</div>
+		
+		<div>
+			<button onclick="updateCalculation(7)">7</button>
+			
+			<button onclick="updateCalculation(8)">8</button>
+			
+			<button onclick="updateCalculation(9)">9</button>
+		</div>
+		
+		<div>
+			<button style="width: 53px" onclick="updateCalculation(0)">0</button>
+			
+			<button onclick="updateCalculation('.')">.</button>
+		</div>
+		
+		<div>
+			<button onclick="updateCalculation(' + ')">+</button>
+			
+			<button onclick="updateCalculation(' - ')">-</button>
+			
+			<button onclick="updateCalculation(' * ')">*</button>
+			
+			<button onclick="updateCalculation(' / ')">/</button>
+		</div>
+		
+		<button onclick="updateCalculation(' = ')">=</button>
+		<button onclick="updateCalculation('Reset')">Reset</button>
+	</div>
+	
+	<div>
+		updateCartQuantity
+		<button onclick="updateCartQuantity(1)">Add to cart</button>
+		<button onclick="updateCartQuantity(2)">+2</button>
+		<button onclick="updateCartQuantity(3)">+3</button>
+		
+		<button onclick="updateCartQuantity(-1)">Remove from cart</button>
+		<button onclick="updateCartQuantity(-2)">-2</button>
+		<button onclick="updateCartQuantity(-3)">-3</button>
+	</div>
+	
+	
+	<script>
+		let calculation = '';
+		function updateCalculation( character ) {
+			if (character !== 'Reset' && character !== ' = ') {
+				calculation += character;
+				console.log(calculation);
+			}
+			else if (character === ' = ') {
+				calculation = eval(calculation);
+				console.log(calculation);
+			}
+			else {
+				calculation = '';
+				console.log(0);
+			}
+		}
+		
+		
+		function updateCartQuantity( quantity ) {
+			let cartQuantity = 0;
+			// update cart quantity
+			if (quantity < 0 && cartQuantity < -quantity) {
+				alert('You cannot remove more items than you have in your cart.')
+				return;
+			}
+			else {
+				cartQuantity += quantity;
+				console.log(`You have ${cartQuantity} items in your cart.`);
+			}
+			return cartQuantity;
+		}
+
+		
+	</script>
+</body>
+</html>
