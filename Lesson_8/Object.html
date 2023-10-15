@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Object</title>
+</head>
+<body>
+	<script>
+		const product = {
+			// property value pair
+			name: 'socks',
+			price: 1090
+		};
+		console.log(product);
+		console.log(product.name);
+		console.log(product.price);
+		
+		product.name = 'cotton socks';
+		console.log(product.name);
+		
+		product.newProperty = true;
+		console.log(product);
+		
+		delete product.newProperty;
+		console.log(product)
+		
+		const product2 = {
+			name: 'shirt',
+			'delivery-time': '1 day',
+			rating: { // nested objects
+				stars: 4.5,
+				count: 87
+			},
+			// This is a method (function inside an object)
+			fun : function function1() {
+				console.log('function inside object');
+			}
+		};
+		console.log(product2);
+		console.log(product2.name);
+		console.log(product2["name"]);
+		console.log(product2['delivery-time']);
+		// console.log(product2.delivery-time);  wrong
+		console.log(product2.rating);
+		console.log(product2.rating.stars);
+		console.log(product2.rating.count);
+		product2.fun();
+	</script>
+</body>
+</html>
