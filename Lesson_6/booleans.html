@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Booleans</title>
+</head>
+<body>
+	<script>
+		// Booleans are true or false values.
+		// They are used to make decisions in code.
+		// They are used to check if something is true or false.
+		console.log(3 > 2); // true
+		console.log(3 < 2); // false
+		
+		/*
+		COMPARISON OPERATORS
+		> greater than
+		< less than
+		>= greater than or equal to
+		<= less than or equal to
+		=== equal to
+		!== not equal to
+		====================================================================================================
+		== tries to convert the values to the same type before comparing
+		!= tries to convert the values to the same type before comparing
+		=== does not try to convert the values to the same type before comparing
+		!== does not try to convert the values to the same type before comparing
+		====================================================================================================
+		 */
+		console.log(5 == '5.00'); // true because it converts the string to a number
+		console.log(5 === '5.00'); // false because it does not convert the string to a number
+		
+		if (3 > 2) {
+			console.log('3 is greater than 2');
+		} else {
+			console.log('3 is not greater than 2');
+		}
+		
+		const age = 15;
+		
+		if (age >= 16) {
+			console.log('You can drive!');
+			console.log('Congrats!')
+		} else if (age >= 14) {
+			console.log('You can drive with a parent!');
+		} else {
+			console.log('You cannot drive!');
+		}
+		
+	</script>
+</body>
+</html>
