@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Functions</title>
+</head>
+<body>
+	<script>
+		// Functions are reusable blocks of code.
+		/*
+		function function1() {
+			console.log('hello');
+			console.log(2 + 2);
+		}
+		*/
+		function calculateTax(cost, taxPercent = 0.1) {
+			// taxPercent is a default parameter value (if no value is passed in, it will be 0.1)
+			console.log(cost * taxPercent);
+		}
+		
+		calculateTax(2000, 0.2);
+		
+	</script>
+</body>
+</html>
