@@ -46,6 +46,58 @@
 		console.log(product2.rating.count);
 		product2.fun();
 		
+		console.log(typeof console.log);
+		
+		console.log(JSON.stringify(product2));
+		
+		const jsonString = JSON.stringify(product2);
+		console.log(JSON.parse(jsonString));
+		
+		console.log('========================================')
+		
+		console.log('hello'.length);
+		console.log('hello'.toUpperCase());
+		
+		const object1 = {
+			// object1 is the reference to the object
+			// object1 is not the object itself
+			// we can change the object value even if object1 is const
+			message: 'hello'
+		};
+		
+		const object2 = object1; // copy by reference
+		
+		// we can change the value of object1 and object2 will also change
+		object1.message = 'good job';
+		console.log(object1);
+		console.log(object2);
+		console.log(object1 === object2); // true because they are the same object (same reference
+		
+		const object3 = {
+			message: 'good job'
+		};
+		console.log(object1 === object3); // false because they are different objects and this compare the reference
+		
+		const object4 = {
+			message: 'good job',
+			price: 799
+		};
+		// const message = object4.message;  shortcut
+		const {message, price} = object4; // shortcut destructuring
+		console.log(message, price);
+		
+		const object5 = {
+			// message: message
+			message,
+			// method: function function1() {
+			// 	console.log('method');
+			// }
+			method() {
+				console.log('method');
+			}
+		};
+		console.log(object5);
+		object5.method();
 	</script>
 </body>
 </html>

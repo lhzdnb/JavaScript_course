@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Exercise</title>
+</head>
+<body>
+	<div>
+		Calculator
+		<div>
+			<button onclick="updateCalculation(1)">1</button>
+			
+			<button onclick="updateCalculation(2)">2</button>
+			
+			<button onclick="updateCalculation(3)">3</button>
+		</div>
+		
+		<div>
+			<button onclick="updateCalculation(4)">4</button>
+			
+			<button onclick="updateCalculation(5)">5</button>
+			
+			<button onclick="updateCalculation(6)">6</button>
+		</div>
+		
+		<div>
+			<button onclick="updateCalculation(7)">7</button>
+			
+			<button onclick="updateCalculation(8)">8</button>
+			
+			<button onclick="updateCalculation(9)">9</button>
+		</div>
+		
+		<div>
+			<button style="width: 53px" onclick="updateCalculation(0)">0</button>
+			
+			<button onclick="updateCalculation('.')">.</button>
+		</div>
+		
+		<div>
+			<button onclick="updateCalculation(' + ')">+</button>
+			
+			<button onclick="updateCalculation(' - ')">-</button>
+			
+			<button onclick="updateCalculation(' * ')">*</button>
+			
+			<button onclick="updateCalculation(' / ')">/</button>
+		</div>
+		
+		<button onclick="updateCalculation(' = ')">=</button>
+		<button onclick="updateCalculation('Reset')">Reset</button>
+	</div>
+	
+	
+	
+	
+	<script>
+		// 8a.
+		const product1 = {
+			name: 'basketball',
+			price: 2095
+		};
+		console.log(product1);
+		
+		// 8b.
+		product1.price += 500;
+		console.log(product1);
+		
+		// 8c.
+		product1['delivery-time'] = '3 days';
+		console.log(product1);
+		
+		// 8d.
+		function comparePrice(product1, product2) {
+			// returns the product that is less expensive
+			return product1.price < product2.price ? product1 : product2;
+		}
+		
+		const product2 = {
+			name: 'baseball',
+			price: 1095
+		};
+		console.log(comparePrice(product1, product2));
+		
+		// 8e.
+		function isSameProduct(product1, product2) {
+			// returns true if the products are the same
+			return (product1.name === product2.name) && (product1.price === product2.price);
+		}
+		
+		console.log(isSameProduct(product1, product2));
+		console.log(isSameProduct(product1, product1));
+		
+		// 8f
+		console.log('Good Morning'.toLowerCase());
+		
+		// 8g
+		console.log('test'.repeat(2));
+		
+		
+		let calculation = localStorage.getItem('result') || '';
+		function updateCalculation( character ) {
+			if (character !== 'Reset' && character !== ' = ') {
+				calculation += character;
+				console.log(calculation);
+			}
+			else if (character === ' = ') {
+				calculation = eval(calculation);
+				console.log(calculation);
+				localStorage.setItem('result', JSON.stringify(calculation));
+			}
+			else {
+				calculation = '';
+				localStorage.removeItem('result');
+				console.log(0);
+			}
+		}
+	</script>
+</body>
+</html>
