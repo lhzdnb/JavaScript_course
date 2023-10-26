@@ -130,7 +130,7 @@
 					result: ''
 				};
 				displayCalculator(num);
-				localStorage.setItem('calculator', JSON.stringify(calculator));
+				localStorage.removeItem('calculator');
 			}
 			else if (calculator.operator === '') {
 				if (operators.includes(num)) {
