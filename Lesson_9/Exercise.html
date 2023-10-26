@@ -23,13 +23,56 @@
 	</label>
 	<p class="showYourType"></p>
 	
+	<button onclick="displayQuantity()">Show Quantity</button>
+	<button onclick="updateQuantity(1)">Add to Cart</button>
+	<button onclick="updateQuantity(2)">+2</button>
+	<button onclick="updateQuantity(3)">+3</button>
+	<button onclick="updateQuantity(4)">+4</button>
+	<button onclick="updateQuantity(5)">+5</button>
+	<button onclick="updateQuantity(-1)">Remove from cart</button>
+	<button onclick="updateQuantity(-2)">-2</button>
+	<button onclick="updateQuantity(-3)">-3</button>
+	<p class="show-cart-quantity" ></p>
+	
+	<div>
+		<p class="calculator-result"></p>
+		<div>
+			<button onclick="calculate(`1`)">1</button>
+			<button onclick="calculate(`2`)">2</button>
+			<button onclick="calculate(`3`)">3</button>
+			<button onclick="calculate('+')">+</button>
+		</div>
+		<div>
+			<button onclick="calculate(`4`)">4</button>
+			<button onclick="calculate(`5`)">5</button>
+			<button onclick="calculate(`6`)">6</button>
+			<button onclick="calculate('-')">-</button>
+		</div>
+		<div>
+			<button onclick="calculate(`7`)">7</button>
+			<button onclick="calculate(`8`)">8</button>
+			<button onclick="calculate(`9`)">9</button>
+			<button onclick="calculate('x')">x</button>
+		</div>
+		<div>
+			<button onclick="calculate(`0`)">0</button>
+			<button onclick="calculate('.')">.</button>
+			<button onclick="calculate('c')">c</button>
+			<button onclick="calculate('/')">/</button>
+		</div>
+		<button onclick="calculate('=')">=</button>
+	</div>
+	
+	
+	
 	<script>
+		localStorage.clear();
 		bt = document.querySelector('button');
 		console.log(bt);
 		btb = document.querySelector('.b');
 		btb.innerHTML = `9b done!`;
 		
-		function displayChoice (choice) {
+		function displayChoice(choice) {
 			if (choice === `head`) {
 				document.querySelector('.js-display').innerHTML = "You chose: heads";
 			}
@@ -50,6 +93,116 @@
 		
 		function showTyping () {
 			document.querySelector('.showYourType').innerHTML = document.querySelector('.type-anything').value;
+		}
+		
+		let cart = Number(localStorage.getItem('cart')) || 0;
+		function updateQuantity(quantity) {
+			if (cart + quantity < 0) {
+				alert(`The cart only contains ${cart} items!`);
+			}
+			else cart += quantity;
+			displayQuantity();
+			localStorage.setItem('cart', cart);
+		}
+		
+		function displayQuantity() {
+			document.querySelector('.show-cart-quantity').innerHTML = `Cart quantity: ${cart}`;
+		}
+		
+		document.addEventListener('DOMContentLoaded', function (){
+			document.querySelector('.show-cart-quantity').innerHTML = `Cart quantity: ${cart}`;
+		})
+		
+		let calculator = JSON.parse(localStorage.getItem('calculator')) || {
+			num1: '',
+			num2: '',
+			operator: '',
+			result: ''
+		};
+		
+		const operators = ['+', '-', '*', '/'];
+		function calculate(num) {
+			if (num === 'c') {
+				calculator = {
+					num1: '',
+					num2: '',
+					operator: '',
+					result: ''
+				};
+				displayCalculator(num);
+				localStorage.setItem('calculator', JSON.stringify(calculator));
+			}
+			else if (calculator.operator === '') {
+				if (operators.includes(num)) {
+					if (calculator.result !== '') {
+						calculator.num1 = calculator.result;
+					}
+					calculator.num1 = Number(calculator.num1);
+					calculator.operator = num;
+					displayCalculator(num);
+					localStorage.setItem('calculator', JSON.stringify(calculator));
+				}
+				else {
+					calculator.num1 += num;
+					displayCalculator(num);
+					localStorage.setItem('calculator', JSON.stringify(calculator));
+				}
+			}
+			else {
+				if (num !== '=' && num !== 'c') {
+					calculator.num2 += num;
+					displayCalculator(num);
+					localStorage.setItem('calculator', JSON.stringify(calculator));
+				}
+				
+				else if (num === '=') {
+					calculator.num2 = Number(calculator.num2);
+					if (calculator.operator === '+') {
+						calculator.result = calculator.num1 + calculator.num2;
+						displayCalculator(num);
+						localStorage.setItem('calculator', JSON.stringify(calculator));
+					}
+					else if (calculator.operator === '-') {
+						calculator.result = calculator.num1 - calculator.num2;
+						displayCalculator(num);
+						localStorage.setItem('calculator', JSON.stringify(calculator));
+					}
+					else if (calculator.operator === 'x') {
+						calculator.result = calculator.num1 * calculator.num2;
+						displayCalculator(num);
+						localStorage.setItem('calculator', JSON.stringify(calculator));
+					}
+					else if (calculator.operator === '/') {
+						calculator.result = calculator.num1 / calculator.num2;
+						displayCalculator(num);
+						localStorage.setItem('calculator', JSON.stringify(calculator));
+					}
+					calculator.num1 = calculator.result;
+					calculator.operator = ''
+					calculator.num2 = '';
+				}
+			}
+		}
+		
+		function displayCalculator(character = NaN) {
+			if (character === '=') {
+				document.querySelector('.calculator-result').innerHTML = calculator.result;
+			}
+			else if (character === 'c') {
+				document.querySelector('.calculator-result').innerHTML = '';
+			}
+			else if (operators.includes(character)) {
+				document.querySelector('.calculator-result').innerHTML = calculator.num1 + calculator.operator;
+			}
+			else {
+				if (calculator.operator === '') {
+					document.querySelector('.calculator-result').innerHTML = calculator.num1;
+				}
+				else {
+					document.querySelector('.calculator-result').innerHTML = calculator.num1 + calculator.operator + calculator.num2;
+				}
+			}
+			
 		}
 		
 	</script>
