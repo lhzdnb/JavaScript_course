@@ -22,7 +22,9 @@
 	<p>Orders under $40 = +$10 shipping.</p>
 	<p>Orders over $40 = FREE shipping.</p>
 	
-	<input placeholder="Cost of Order" class="cost-input"  onkeydown="handleCostKeyDown(event);">
+	<label>
+		<input placeholder="Cost of Order" class="cost-input"  onkeydown="handleCostKeyDown(event);">
+	</label>
 	<button onclick="calculateTotal();">Calculate</button>
 	<p class="showTotal"></p>
 	
@@ -34,13 +36,25 @@
 			}
 		}
 		
-		
+		let costInput = document.querySelector('.cost-input');
+		let showTotalElement = document.querySelector('.showTotal');
 		
 		function calculateTotal() {
-			const cost = Number(document.querySelector('.cost-input').value);
-			const total = cost > 40 ? cost : cost + 10;
-			document.querySelector('.showTotal').innerHTML = `$${total}`;
+			const cost = parseFloat(costInput.value);
+			if (isNaN(cost)) {
+				console.error('Invalid cost value');
+				return;
+			}
+			
+			const decimalDigit = (costInput.value.includes('.')) ? costInput.value.split('.')[1].length : 0;
+			const multiplier = Math.pow(10, decimalDigit);
+			
+			let total = cost >= 40 ? cost * multiplier : (cost * multiplier + multiplier * 10);
+			total = total / multiplier;
+			
+			showTotalElement.innerHTML = `$${total}`;
 		}
+		
 		
 		let score = JSON.parse(localStorage.getItem('score')) || {
 			wins: 0,
@@ -49,7 +63,6 @@
 		};
 		
 		updateScoreElement();
-		
 		
 		function playGame (playerMove) {
 			const computerMove = pickComputerMove();

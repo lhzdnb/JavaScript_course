@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Lesson 9 Exercise</title>
+</head>
+<body>
+	<button>9a</button>
+	<button class="b">9b</button>
+	
+	<button class="head" onclick="displayChoice(`head`)">heads</button>
+	<button class="tails" onclick="displayChoice(`tail`)">tails</button>
+	<p class="js-display"></p>
+	<label>
+		<input placeholder="Name" class="js-name-input" onkeydown="displayName2(event)">
+		<button class="submit-button" onclick="displayName()">Submit</button>
+	</label>
+	<p class="display-name"></p>
+	
+	
+	<label>
+		<input placeholder="Type something" class="type-anything" onkeyup="showTyping()">
+	</label>
+	<p class="showYourType"></p>
+	
+	<script>
+		bt = document.querySelector('button');
+		console.log(bt);
+		btb = document.querySelector('.b');
+		btb.innerHTML = `9b done!`;
+		
+		function displayChoice (choice) {
+			if (choice === `head`) {
+				document.querySelector('.js-display').innerHTML = "You chose: heads";
+			}
+			else if (choice === `tail`)
+				document.querySelector('.js-display').innerHTML = "You chose: tails";
+		}
+		
+		function displayName() {
+			name = document.querySelector('.js-name-input').value;
+			document.querySelector('.display-name').innerHTML = `Your name is: ${name}`;
+		}
+		
+		function displayName2(event) {
+			if (event.key === 'Enter') {
+				displayName();
+			}
+		}
+		
+		function showTyping () {
+			document.querySelector('.showYourType').innerHTML = document.querySelector('.type-anything').value;
+		}
+		
+	</script>
+</body>
+</html>
