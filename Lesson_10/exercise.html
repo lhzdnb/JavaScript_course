@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Exercise</title>
+	<style>
+		button {
+			border: none;
+			border-radius: 6px;
+			padding: 10px 12px;
+			margin-right: 10px;
+		}
+		
+		.changed-button {
+			background-color: black;
+			color: white;
+		}
+	</style>
+</head>
+<body>
+	<button onclick="changeColor('gaming');" class="js-gaming">Gaming</button>
+	<button onclick="changeColor('music');" class="js-music">Music</button>
+	<button onclick="changeColor('tech');" class="js-tech">Tech</button>
+	
+	<script>
+		let sampleSpace = ['gaming', 'music', 'tech'];
+		function changeColor(choice) {
+			for (let i = 0; i < sampleSpace.length; i ++) {
+				if (choice !== sampleSpace[i]) {
+					document.querySelector(`.js-${sampleSpace[i]}`).classList.remove('changed-button');
+				}
+			}
+			document.querySelector(`.js-${choice}`).classList.add('changed-button');
+		}
+	</script>
+</body>
+</html>

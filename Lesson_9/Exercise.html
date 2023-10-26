@@ -143,6 +143,10 @@
 					localStorage.setItem('calculator', JSON.stringify(calculator));
 				}
 				else {
+					if (num === '=')
+						return;
+					else if (num === '.' && calculator.num1.includes('.'))
+						return;
 					calculator.num1 += num;
 					displayCalculator(num);
 					localStorage.setItem('calculator', JSON.stringify(calculator));
@@ -177,7 +181,8 @@
 						displayCalculator(num);
 						localStorage.setItem('calculator', JSON.stringify(calculator));
 					}
-					calculator.num1 = calculator.result;
+					calculator.num1 = calculator.result.toString();
+					calculator.result = '';
 					calculator.operator = ''
 					calculator.num2 = '';
 				}
