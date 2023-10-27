@@ -22,10 +22,10 @@ renderTodoList();
 //     inputElement.value = '';
 // }
 
-// Array to store todo items
+// Array to store to-do items
 
 /**
- * Adds a new todo item.
+ * Adds a new to-do item.
  */
 function addTodo() {
     // Get input values
@@ -47,7 +47,7 @@ function addTodo() {
 }
 
 /**
- * Renders the todo list on the page.
+ * Renders the to-do list on the page.
  */
 function renderTodoList() {
     const listContainer = document.querySelector('.js-show-todo-list');
@@ -65,7 +65,7 @@ function renderTodoList() {
 
 /**
 
- * Deletes a todo item by its index and refreshes the list.
+ * Deletes a to-do item by its index and refreshes the list.
  */
 function deleteTodo(index) {
     todoList.splice(index, 1);
@@ -73,7 +73,7 @@ function deleteTodo(index) {
     renderTodoList();
 }
 /**
- * Saves the current state of the todo list to local storage.
+ * Saves the current state of the to-do list to local storage.
  */
 function saveTodosToLocal() {
     localStorage.setItem('todoList', JSON.stringify(todoList));
