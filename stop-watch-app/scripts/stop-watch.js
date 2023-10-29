@@ -124,7 +124,7 @@ function timer() {
     }
     else {
         time.millisecond = 0;
-        if (time.second < 60) {
+        if (time.second < 59) {
             time.second ++;
         }
         else {
