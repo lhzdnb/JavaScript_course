@@ -27,10 +27,6 @@ let time = {
     millisecond: 0
 };
 
-time.minute = Number(time.minute);
-time.second = Number(time.second);
-time.millisecond = Number(time.millisecond);
-
 let timeInterval = 0;
 
 const buttonsElement = document.querySelector('.button-grid');
