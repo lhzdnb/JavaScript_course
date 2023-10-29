@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>App</title>
+</head>
+<body>
+	<button onclick="addMessage()">Add Message</button>
+	<button onclick="removeMessage()">Remove Message</button>
+	
+	
+	<script>
+		let message = 2;
+		let intervalID = setInterval(changeTitle, 1000);
+		let titles = ['App', `(${message}) New Messages`];
+		function addMessage() {
+			message++;
+			titles = ['App', `(${message}) New Messages`];
+			clearInterval(intervalID);
+			intervalID = setInterval(changeTitle, 1000);
+		}
+		function removeMessage() {
+			message--;
+			if (message === 0) {
+				document.title = 'App';
+				clearInterval(intervalID);
+				return;
+			}
+			titles = ['App', `(${message}) New Messages`];
+			clearInterval(intervalID);
+			intervalID = setInterval(changeTitle, 1000);
+		}
+		
+		let i = 0;
+		function changeTitle() {
+			document.title = titles[i];
+			i = i === 1 ? 0 : 1;
+		}
+	</script>
+</body>
+</html>
