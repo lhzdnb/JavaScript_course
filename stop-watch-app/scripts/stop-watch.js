@@ -56,7 +56,7 @@ function startTimer() {
         resetButton.removeEventListener('click', resetTimer);
     }
 
-    timeInterval = setInterval(timer, 1);
+    timeInterval = setInterval(timer, 10);
     // stop button and subsection button
     buttonsElement.innerHTML = `
     <button class="stop-time-button js-stop-time-button">Stop</button>
@@ -105,7 +105,7 @@ function resetTimer() {
         second: 0,
         millisecond: 0
     };
-    timeElement.innerHTML = '00:00.000';
+    timeElement.innerHTML = '00:00.00';
     recordNumber = 1;
 
     // The Stop button becomes Start button The Reset button becomes Subsection button.
@@ -123,7 +123,7 @@ function resetTimer() {
 
 function timer() {
     // increase time
-    if (time.millisecond < 1000) {
+    if (time.millisecond < 99) {
         time.millisecond ++;
     }
     else {
@@ -144,6 +144,6 @@ function timer() {
 function displayTime(time) {
     let min = time.minute.toString().padStart(2, '0');
     let sec = time.second.toString().padStart(2, '0');
-    let mSec = time.millisecond.toString().padStart(3, '0');
+    let mSec = time.millisecond.toString().padStart(2, '0');
     return [min, sec, mSec];
 }
