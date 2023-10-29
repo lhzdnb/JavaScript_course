@@ -21,8 +21,6 @@
  *  4. The subsection button is useless until the timer starts.
  */
 
-
-
 let time = {
     minute: 0,
     second: 0,
@@ -70,11 +68,13 @@ function startTimer() {
 }
 
 function addSubsection() {
+    // make this button useless until the timer begins
     if (time.minute === 0 && time.second === 0 && time.millisecond === 0) {
         return;
     }
-    let [min, sec, mSec] = displayTime(time);
 
+    let [min, sec, mSec] = displayTime(time);
+    // display the record
     subsectionElement.innerHTML += `
     <div class="record">
       <div>Record ${recordNumber}</div>
